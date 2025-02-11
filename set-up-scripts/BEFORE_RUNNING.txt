@@ -1,0 +1,12 @@
+Do these things before running the install script to make your life easier
+
+1. Put your board in "update mode" and plug it in (to prepare for flashing it)
+    a. While device is unplugged, hold the small button labeled SW1 on the board, 
+    b. While still pressing the button, plug the board back in. 
+    c. You should see a blue LED blinking approximately once per second, 
+    d. You have successfully placed the device into update mode!
+2. Download the proper Docker.dmg from https://docs.docker.com/desktop/setup/install/mac-install
+    a. Locate the path, check if it is located in ./Downloads/ (otherwise you will have to modify the file path in the script)
+3. Navigate to the root directory of where you want your environment
+4. Download the No Reset DAPLink file for MacOS (provided by Mitre)
+4. Try running
