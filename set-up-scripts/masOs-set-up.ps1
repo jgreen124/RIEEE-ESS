@@ -38,18 +38,6 @@ docker run --rm -v ./decoder/:/decoder -v ./global.secrets:/global.secrets -v ./
 python -m ectf25_design.gen_subscription global.secrets deadbeef_c1.sub 0xDEADBEEF 32 128 1
 
 # ------- Flash the Decoder Firmware -----------------
-$daplinkPath = "/Volumes/DAPLINK"
-
-# Ensure DAPLink is mounted before flashing
-if (Test-Path $daplinkPath) {
-    cp "$HOME/Downloads/special_daplink_firmware.hex" $daplinkPath/
-    diskutil unmount $daplinkPath
-    Write-Host "Waiting for board to reboot..."
-    Start-Sleep -Seconds 10
-} else {
-    Write-Host "Error: DAPLink device not detected. Please check connection." -ForegroundColor Red
-    exit 1
-}
-
+$serialDevice = "tty.usbmodem11202" #board name is board-specific
 # Flash the Decoder Firmware
 python -m ectf25.utils.flash ./deadbeef_build/max78000.bin $serialDevice
