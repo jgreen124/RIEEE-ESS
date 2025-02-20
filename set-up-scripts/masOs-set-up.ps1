@@ -7,38 +7,23 @@ pwsh
 python -m venv .venv --prompt rieee-ess-env
 
 # Activate virtual environment
-source .venv/bin/activate
+./.venv/bin/activate
 
 # Install required packages
 python -m pip install ./tools/ # DO NOT EDIT
 python -m pip install -e ./design/ # Your team may edit
 
 # ------- Set Up Docker -----------------------------
-$dockerDmgPath = "$HOME/Downloads/Docker.dmg"
 
-# Check if Docker DMG exists before mounting
-if (Test-Path $dockerDmgPath) {
-    hdiutil attach $dockerDmgPath -nobrowse
-    cp -R /Volumes/Docker/Docker.app /Applications/
-    hdiutil detach /Volumes/Docker
-    open /Applications/Docker.app
-} else {
-    Write-Host "Error: Docker.dmg not found in ~/Downloads/" -ForegroundColor Red
-    exit 1
-}
+#Open docker desktop on mac :) (if its not already open)
 
 # ------- Locate Serial Port ------------------------
 # Ensure Docker is installed before running this step
-$serialDevice = ls /dev/tty.* | Sort-Object LastWriteTime -Descending | Select-Object -First 1
 
-# Check if serial port was detected
-if ($serialDevice -eq $null) {
-    Write-Host "Error: No serial device detected. Please check your connection." -ForegroundColor Red
-    exit 1
-} else {
-    Write-Host "Using Serial Device: $serialDevice"
-    sudo chmod 777 $serialDevice
-}
+# use command below to help locate the device (make sure it is plugged in)
+ls -lt /dev/tty.* | head -10
+# Maya's device (board 7): tty.usbmodem11202 
+
 
 # ------- Create a Deployment ------------------------
 python -m ectf25_design.gen_secrets global.secrets 1 3 4
