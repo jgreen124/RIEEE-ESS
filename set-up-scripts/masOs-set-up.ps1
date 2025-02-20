@@ -38,6 +38,6 @@ docker run --rm -v ./decoder/:/decoder -v ./global.secrets:/global.secrets -v ./
 python -m ectf25_design.gen_subscription global.secrets deadbeef_c1.sub 0xDEADBEEF 32 128 1
 
 # ------- Flash the Decoder Firmware -----------------
-$serialDevice = "tty.usbmodem11202" #board name is board-specific
+$serialDevice = "/dev/tty.usbmodem11202" #board name is board-specific
 # Flash the Decoder Firmware
 python -m ectf25.utils.flash ./deadbeef_build/max78000.bin $serialDevice
