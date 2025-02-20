@@ -15,6 +15,7 @@ import struct
 import json
 from Crypto.Protocol.KDF import scrypt
 from Crypto.Random import get_random_bytes
+import simple_crypto
 
 class Encoder:
     def __init__(self, secrets: bytes):
