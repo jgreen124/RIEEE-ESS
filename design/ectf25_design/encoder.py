@@ -53,7 +53,7 @@ class Encoder:
         """
         # TODO: encode the satellite frames so that they meet functional and
         #  security requirements
-        lib = ctypes.CDLL('./simple_crypto.c')
+        lib = ctypes.CDLL('./cryptolib.so')
        
 
         return struct.pack("<IQ", channel, timestamp) + frame
