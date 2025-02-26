@@ -13,6 +13,9 @@ Copyright: Copyright (c) 2025 The MITRE Corporation
 import argparse
 import struct
 import json
+import ctypes
+from Crypto.Protocol.KDF import scrypt
+from Crypto.Random import get_random_bytes
 
 
 class Encoder:
@@ -53,6 +56,12 @@ class Encoder:
         """
         # TODO: encode the satellite frames so that they meet functional and
         #  security requirements
+        lib = ctypes.CDLL('./cryptolib.so')
+        password = b'aesion'
+        salt = get_random_bytes(16)
+        key = scrypt(password, salt, 16, N=2**14, r=8, p=10)
+        lib.encrypt_sym(bytes,len(bytes),key,cipher)
+       
 
         return struct.pack("<IQ", channel, timestamp) + frame
 
