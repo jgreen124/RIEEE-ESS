@@ -61,6 +61,7 @@ class Encoder:
         salt = get_random_bytes(16)
         key = scrypt(password, salt, 16, N=2**14, r=8, p=10)
         lib.encrypt_sym(bytes,len(bytes),key,cipher)
+        lib.hash(bytes,len(bytes),cipher)
        
 
         return struct.pack("<IQ", channel, timestamp) + frame
