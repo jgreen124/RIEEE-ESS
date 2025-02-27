@@ -16,6 +16,7 @@ import json
 import ctypes
 from Crypto.Protocol.KDF import scrypt
 from Crypto.Random import get_random_bytes
+import time
 
 
 class Encoder:
