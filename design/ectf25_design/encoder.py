@@ -16,7 +16,7 @@ import json
 import ctypes
 from Crypto.Protocol.KDF import scrypt
 from Crypto.Random import get_random_bytes
-import time
+from datetime import datetime
 
 
 class Encoder:
@@ -57,6 +57,7 @@ class Encoder:
         """
         # TODO: encode the satellite frames so that they meet functional and
         #  security requirements
+        time = datetime.timestamp()
         lib = ctypes.CDLL('./cryptolib.so')
         password = b'aesion'
         salt = get_random_bytes(16)
