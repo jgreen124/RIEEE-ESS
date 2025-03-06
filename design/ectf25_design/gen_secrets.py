@@ -13,6 +13,8 @@ Copyright: Copyright (c) 2025 The MITRE Corporation
 import argparse
 import json
 from pathlib import Path
+from Crypto.Protocol.KDF import scrypt
+from Crypto.Random import get_random_bytes
 
 from loguru import logger
 
