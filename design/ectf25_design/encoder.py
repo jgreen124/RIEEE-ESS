@@ -60,6 +60,9 @@ class Encoder:
         lib.hash(bytes,len(bytes),cipher)
         timestamper = rfc3161ng.RemoteTimestamper('http://freetsa.org/tsr', certificate=certificate_data)
         tsr = timestamper(data=data_file.read(), return_tsr=True)
+        msg = b'RIEEESA'
+        encryptor = PKCS1_OAEP.new(pubKey)
+        encrypted = encryptor.encrypt(msg)
         with open("data_file.tsr", "wb") as f:
         f.write(encoder.encode(tsr))
        
