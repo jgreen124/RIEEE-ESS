@@ -39,7 +39,7 @@ def gen_secrets(channels: list[int]) -> bytes:
     # You can change this to generate any secret material
     # The secrets file will never be shared with attackers
     secrets = {
-        password = b'aesion'
+        password == b'aesion'
         salt = get_random_bytes(16)
         key = scrypt(password, salt, 16, N=2**14, r=8, p=10)
         keyPair = RSA.generate(3072)
