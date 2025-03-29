@@ -13,10 +13,10 @@ Copyright: Copyright (c) 2025 The MITRE Corporation
 import argparse
 import json
 from pathlib import Path
-from Crypto.Protocol.KDF import scrypt
-from Crypto.Random import get_random_bytes
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_OAEP
+from Cryptodome.Protocol.KDF import scrypt
+from Cryptodome.Random import get_random_bytes
+from Cryptodome.PublicKey import RSA
+from Cryptodome.Cipher import PKCS1_OAEP
 from loguru import logger
 
 
