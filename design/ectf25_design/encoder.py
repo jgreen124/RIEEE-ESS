@@ -60,7 +60,7 @@ class Encoder:
         lib.hash(bytes,len(bytes),cipher)
         timestamper = rfc3161ng.RemoteTimestamper('http://freetsa.org/tsr', certificate=certificate_data)
         tsr = timestamper(data=data_file.read(), return_tsr=True)
-        string2 = "RIEESA"
+        string2 = bytes("RIEESA", "utf-8")
         msg = bytes(string2, encoding='utf-8')
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(msg)
