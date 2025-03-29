@@ -40,12 +40,12 @@ def gen_secrets(channels: list[int]) -> bytes:
     # The secrets file will never be shared with attackers
     secrets = {
         password : bytes("aesion", "utf-8"),
-        salt : get_random_bytes(16)
-        key : scrypt(password, salt, 16, N=2**14, r=8, p=10)
-        keyPair = RSA.generate(3072)
-        pubKey = keyPair.publickey()
-        pubKeyPEM = pubKey.exportKey()
-        privKeyPEM = keyPair.exportKey()
+        salt : get_random_bytes(16),
+        key : scrypt(password, salt, 16, N=2**14, r=8, p=10),
+        keyPair = RSA.generate(3072),
+        pubKey = keyPair.publickey(),
+        pubKeyPEM = pubKey.exportKey(),
+        privKeyPEM = keyPair.exportKey(),
         "channels": channels,
         "some_secrets": "EXAMPLE",
     }
