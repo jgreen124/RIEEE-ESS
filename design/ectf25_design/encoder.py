@@ -58,7 +58,7 @@ class Encoder:
         lib.encrypt_sym(bytes,len(bytes),key,cipher)
         lib.hash(bytes,len(bytes),cipher)
         with open("data_file.tsr", "wb") as f:
-        f.write(encoder.encode(tsr))
+            f.write(encoder.encode(tsr))
        
 
         return struct.pack("<IQ", channel, timestamp) + frame
