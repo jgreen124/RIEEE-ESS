@@ -13,10 +13,6 @@ Copyright: Copyright (c) 2025 The MITRE Corporation
 import argparse
 import json
 from pathlib import Path
-from Cryptodome.Protocol.KDF import scrypt
-from Cryptodome.Random import get_random_bytes
-from Cryptodome.PublicKey import RSA
-from Cryptodome.Cipher import PKCS1_OAEP
 from loguru import logger
 
 
@@ -42,10 +38,6 @@ def gen_secrets(channels: list[int]) -> bytes:
         password : bytes("aesion", "utf-8"),
         salt : get_random_bytes(16),
         key : scrypt(password, salt, 16, N=2**14, r=8, p=10),
-        keyPair : RSA.generate(3072),
-        pubKey : keyPair.publickey(),
-        pubKeyPEM : pubKey.exportKey(),
-        privKeyPEM : keyPair.exportKey(),
         "channels": channels,
         "some_secrets": "EXAMPLE",
     }
