@@ -33,7 +33,10 @@ def gen_secrets(channels: list[int]) -> bytes:
 
     # Create the secrets object
     # You can change this to generate any secret material
-    # The secrets file will never be shared with attackers
+    # The secrets file will never be shared with attacker
+    password = 0
+    salt = 0
+    key = 0
     secrets = {
         "channels": channels,
         password : bytes("aesion", "utf-8"),
