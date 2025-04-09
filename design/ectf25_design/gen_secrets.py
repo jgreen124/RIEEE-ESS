@@ -40,9 +40,6 @@ def gen_secrets(channels: list[int]) -> bytes:
     key = 0
     secrets = {
         "channels": channels,
-        password : bytes("aesion", "utf-8"),
-        salt : token_bytes(16),
-        key : scrypt(password, salt, 16, N=2**14, r=8, p=10),
         "some_secrets": "EXAMPLE",
     }
 
