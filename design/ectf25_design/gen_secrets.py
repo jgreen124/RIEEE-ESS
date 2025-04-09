@@ -13,8 +13,8 @@ Copyright: Copyright (c) 2025 The MITRE Corporation
 import argparse
 import json
 from pathlib import Path
-
 from loguru import logger
+from secrets import token_bytes
 
 
 def gen_secrets(channels: list[int]) -> bytes:
@@ -34,7 +34,10 @@ def gen_secrets(channels: list[int]) -> bytes:
 
     # Create the secrets object
     # You can change this to generate any secret material
-    # The secrets file will never be shared with attackers
+    # The secrets file will never be shared with attacker
+    password = 0
+    salt = 0
+    key = 0
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
