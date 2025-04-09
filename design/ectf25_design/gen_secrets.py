@@ -14,7 +14,7 @@ import argparse
 import json
 from pathlib import Path
 from loguru import logger
-import secrets
+from secrets import token_bytes
 
 
 def gen_secrets(channels: list[int]) -> bytes:
