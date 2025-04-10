@@ -27,10 +27,10 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     unzip    
 
     
+WORKDIR /design
 RUN pip install requests flask cryptography
 
 RUN pip install pycryptodomex
-WORKDIR /design
 
 # Install MSDK
 RUN apt-get install -y unzip && \
