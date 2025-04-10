@@ -54,9 +54,9 @@ class Encoder:
         """
         # TODO: encode the satellite frames so that they meet functional and
         #  security requirements
-        lib = ctypes.CDLL('./cryptolib.so')
-        lib.encrypt_sym(bytes,len(bytes),key,cipher)
-        lib.hash(bytes,len(bytes),cipher)
+        # lib = ctypes.CDLL('./cryptolib.so')
+        # lib.encrypt_sym(bytes,len(bytes),key,cipher)
+        # lib.hash(bytes,len(bytes),cipher)
         with open("data_file.tsr", "wb") as f:
             f.write(encoder.encode(tsr))
        
