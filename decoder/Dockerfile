@@ -3,6 +3,7 @@
 # libraries, dependencies, the compiler for a different language)
 
 FROM ubuntu:24.04
+FROM python:3.12-slim
 
 LABEL version="0.2"
 LABEL description="Example Decoder Docker Container for the 2025 eCTF"
@@ -24,6 +25,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     libtool \
     texinfo \
     unzip    
+RUN pip install requests flask cryptography
+
 
 # Install MSDK
 RUN apt-get install -y unzip && \
