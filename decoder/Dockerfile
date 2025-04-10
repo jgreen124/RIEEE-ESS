@@ -25,7 +25,10 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     libtool \
     texinfo \
     unzip    
+
+    
 RUN pip install requests flask cryptography
+
 RUN pip install pycryptodomex
 WORKDIR /design
 
