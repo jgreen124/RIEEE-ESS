@@ -26,7 +26,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     texinfo \
     unzip    
 RUN pip install requests flask cryptography
-RUN pip install pycryptodome
+RUN pip install pycryptodomex
 WORKDIR /design
 
 # Install MSDK
