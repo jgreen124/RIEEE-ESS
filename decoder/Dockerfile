@@ -44,7 +44,7 @@ WORKDIR /design
 
 COPY . .
 
-RUN pip install pycryptodomex
+RUN pip install pycryptodome
 
 CMD ["python", "main.py"]
 
