@@ -44,7 +44,7 @@ WORKDIR /design
 
 COPY . .
 
-RUN pip install pycryptodome
+RUN python3.10 -m pip install --no-cache-dir pycryptodome
 
 CMD ["python", "main.py"]
 
