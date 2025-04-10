@@ -14,6 +14,8 @@ import argparse
 import struct
 import json
 import ctypes
+import rfc3161ng
+from pyasn1.codec.der import encoder
 
 
 class Encoder:
@@ -54,9 +56,15 @@ class Encoder:
         """
         # TODO: encode the satellite frames so that they meet functional and
         #  security requirements
-        lib = ctypes.CDLL('./cryptolib.so')
-        lib.encrypt_sym(bytes,len(bytes),key,cipher)
-        lib.hash(bytes,len(bytes),cipher)
+        # lib = ctypes.CDLL('./cryptolib.so')
+        # lib.encrypt_sym(bytes,len(bytes),key,cipher)
+        # lib.hash(bytes,len(bytes),cipher)
+        timestamper = rfc3161ng.RemoteTimestamper('http://freetsa.org/tsr', certificate=certificate_data)
+        tsr = timestamper(data=data_file.read(), return_tsr=True)
+        string2 = bytes("RIEESA", "utf-8")
+        msg = bytes(string2, encoding='utf-8')
+        encryptor = PKCS1_OAEP.new(pubKey)
+        encrypted = encryptor.encrypt(msg)
         with open("data_file.tsr", "wb") as f:
             f.write(encoder.encode(tsr))
        
