@@ -15,7 +15,6 @@ import json
 from pathlib import Path
 from loguru import logger
 from secrets import token_bytes
-from Crypto.Protocol.KDF import scrypt
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 
