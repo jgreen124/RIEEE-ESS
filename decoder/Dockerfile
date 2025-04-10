@@ -27,8 +27,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 
 # Install MSDK
-RUN apt-get install -y unzip && \
-    wget https://github.com/analogdevicesinc/msdk/archive/refs/tags/v2024_02.zip && \
+RUN  wget https://github.com/analogdevicesinc/msdk/archive/refs/tags/v2024_02.zip && \
     unzip v2024_02.zip && \
     rm -f v2024_02.zip
 
