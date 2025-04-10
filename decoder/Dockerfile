@@ -19,7 +19,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     gcc-arm-none-eabi \
     binutils-arm-none-eabi \
     make \
-    python3.10 \
     git \
     wget \
     libtool \
@@ -44,7 +43,7 @@ WORKDIR /design
 
 COPY . .
 
-RUN python3.10 -m pip install --no-cache-dir pycryptodome
+RUN pip install --no-cache-dir pycryptodome
 
 CMD ["python", "main.py"]
 
