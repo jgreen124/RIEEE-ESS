@@ -15,6 +15,9 @@ import json
 from pathlib import Path
 from loguru import logger
 from secrets import token_bytes
+from Cryptodome.Protocol.KDF import scrypt
+from Cryptodome.PublicKey import RSA
+from Cryptodome.Cipher import PKCS1_OAEP
 
 
 def gen_secrets(channels: list[int]) -> bytes:
@@ -39,6 +42,10 @@ def gen_secrets(channels: list[int]) -> bytes:
     salt = 0
     key = 0
     secrets = {
+        keyPair : RSA.generate(3072),
+        pubKey : keyPair.publickey(),
+        pubKeyPEM : pubKey.exportKey(),
+        privKeyPEM : keyPair.exportKey(),
         "channels": channels,
         "some_secrets": "EXAMPLE",
     }
