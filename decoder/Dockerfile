@@ -44,7 +44,7 @@ WORKDIR /design
 
 COPY . .
 
-RUN pip install --no-cache-dir pycryptodomex
+RUN pip install pycryptodomex
 
 CMD ["python", "main.py"]
 
