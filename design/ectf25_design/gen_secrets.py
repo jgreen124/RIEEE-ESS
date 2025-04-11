@@ -46,8 +46,8 @@ def gen_secrets(channels: list[int]) -> bytes:
         pubKey : keyPair.publickey(),
         pubKeyPEM : pubKey.exportKey(),
         privKeyPEM : keyPair.exportKey(),
-        string2 : bytes("RIEESA", "utf-8"),
-        msg : bytes(string2, encoding='utf-8'),
+        string2 : token_bytes("RIEESA", "utf-8"),
+        msg : token_bytes(string2, encoding='utf-8'),
     }
 
     # NOTE: if you choose to use JSON for your file type, you will not be able to
