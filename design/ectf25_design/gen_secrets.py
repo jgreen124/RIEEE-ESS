@@ -41,12 +41,12 @@ def gen_secrets(channels: list[int]) -> bytes:
     salt = 0
     key = 0
     secrets = {
+        "channels": channels,
+        "some_secrets": "EXAMPLE",
         keyPair : RSA.generate(3072),
         pubKey : keyPair.publickey(),
         pubKeyPEM : pubKey.exportKey(),
         privKeyPEM : keyPair.exportKey(),
-        "channels": channels,
-        "some_secrets": "EXAMPLE",
     }
 
     # NOTE: if you choose to use JSON for your file type, you will not be able to
