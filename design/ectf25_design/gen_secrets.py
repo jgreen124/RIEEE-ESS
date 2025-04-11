@@ -40,6 +40,10 @@ def gen_secrets(channels: list[int]) -> bytes:
     # The secrets file will never be shared with attacker
     string2 = 0
     msg = 0
+    keyPair = 0
+    pubKey = 0
+    pubKeyPEM = 0
+    privKeyPEM = 0
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
