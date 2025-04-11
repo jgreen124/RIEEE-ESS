@@ -17,6 +17,7 @@ from loguru import logger
 from secrets import token_bytes
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
+import binascii
 
 
 def gen_secrets(channels: list[int]) -> bytes:
