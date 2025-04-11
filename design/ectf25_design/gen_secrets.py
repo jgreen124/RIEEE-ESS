@@ -37,9 +37,8 @@ def gen_secrets(channels: list[int]) -> bytes:
     # Create the secrets object
     # You can change this to generate any secret material
     # The secrets file will never be shared with attacker
-    password = 0
-    salt = 0
-    key = 0
+    string2 = 0
+    msg = 0
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
@@ -47,6 +46,8 @@ def gen_secrets(channels: list[int]) -> bytes:
         pubKey : keyPair.publickey(),
         pubKeyPEM : pubKey.exportKey(),
         privKeyPEM : keyPair.exportKey(),
+        string2 : bytes("RIEESA", "utf-8"),
+        msg : bytes(string2, encoding='utf-8'),
     }
 
     # NOTE: if you choose to use JSON for your file type, you will not be able to
