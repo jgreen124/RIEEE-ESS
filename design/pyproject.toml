@@ -12,7 +12,6 @@ dependencies = [
     "loguru",
     "pycryptodome",
     "rfc3161ng",
-    "pyasn1.codec.der"
 ]
 
 [tool.black]
