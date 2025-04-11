@@ -15,7 +15,8 @@ import struct
 import json
 import ctypes
 import rfc3161ng
-from pyasn1.codec.der import encoder
+import binascii
+
 
 
 class Encoder:
