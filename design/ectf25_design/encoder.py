@@ -62,8 +62,11 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-        string2 = token_bytes(16).hex(frame)
         msg = frame
+        keyPair = RSA.generate(3072)
+        pubKey = keyPair.publickey()
+        pubKeyPEM =  pubKey.exportKey()
+        privKeyPEM = keyPair.exportKey()
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(msg)
         with open("data_file.tsr", "wb") as f:
