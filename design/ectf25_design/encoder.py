@@ -71,26 +71,3 @@ class Encoder:
         return struct.pack("<IQ", channel, timestamp) + frame
 
 
-def main():
-    """A test main to one-shot encode a frame
-
-    This function is only for your convenience and will not be used in the final design.
-
-    After pip-installing, you should be able to call this with:
-        python3 -m ectf25_design.encoder path/to/test.secrets 1 "frame to encode" 100
-    """
-    parser = argparse.ArgumentParser(prog="ectf25_design.encoder")
-    parser.add_argument(
-        "secrets_file", type=argparse.FileType("rb"), help="Path to the secrets file"
-    )
-    parser.add_argument("channel", type=int, help="Channel to encode for")
-    parser.add_argument("frame", help="Contents of the frame")
-    parser.add_argument("timestamp", type=int, help="64b timestamp to use")
-    args = parser.parse_args()
-
-    encoder = Encoder(args.secrets_file.read())
-    print(repr(encoder.encode(args.channel, args.frame.encode(), args.timestamp)))
-
-
-if __name__ == "__main__":
-    main()
