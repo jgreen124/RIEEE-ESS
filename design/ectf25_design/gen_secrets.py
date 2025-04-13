@@ -41,9 +41,9 @@ def gen_secrets(channels: list[int]) -> bytes:
     string2 = 0
     msg = 0
     keyPair = 0
-    pubKey = 0
-    pubKeyPEM = 0
-    privKeyPEM = 0
+    pubKey = keyPair.publickey()
+    pubKeyPEM =  pubKey.exportKey()
+    privKeyPEM = keyPair.exportKey()
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
