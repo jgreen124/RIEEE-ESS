@@ -16,7 +16,7 @@ import json
 import ctypes
 import rfc3161ng
 import binascii
-
+from secrets import token_bytes
 
 
 class Encoder:
@@ -60,8 +60,8 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-        string2 = bytes("RIEESA", "utf-8")
-        msg = bytes(string2, encoding='utf-8')
+        string2 = token_bytes(16).hex()
+        msg = token_bytes(16).hex(),
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(msg)
         with open("data_file.tsr", "wb") as f:
