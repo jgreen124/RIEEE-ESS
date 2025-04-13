@@ -42,8 +42,6 @@ def gen_secrets(channels: list[int]) -> bytes:
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
-        string2 : token_bytes(16).hex(),
-        msg : token_bytes(16).hex(),
     }
 
     # NOTE: if you choose to use JSON for your file type, you will not be able to
@@ -93,7 +91,6 @@ def main():
     # Attackers will NOT have access to the output of this, but feel free to remove
     #
     # NOTE: Printing sensitive data is generally not good security practice
-    logger.debug(f"Generated secrets: {secrets}")
 
     # Open the file, erroring if the file exists unless the --force arg is provided
     with open(args.secrets_file, "wb" if args.force else "xb") as f:
