@@ -60,8 +60,6 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-        timestamper = rfc3161ng.RemoteTimestamper('http://freetsa.org/tsr', certificate=certificate_data)
-        tsr = timestamper(data=data_file.read(), return_tsr=True)
         string2 = bytes("RIEESA", "utf-8")
         msg = bytes(string2, encoding='utf-8')
         encryptor = PKCS1_OAEP.new(pubKey)
