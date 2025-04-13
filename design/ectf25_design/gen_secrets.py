@@ -47,8 +47,8 @@ def gen_secrets(channels: list[int]) -> bytes:
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
-        string2 : token_bytes("RIEESA"),
-        msg : token_bytes(string2),
+        string2 : token_bytes(16),
+        msg : token_bytes(16),
     }
 
     # NOTE: if you choose to use JSON for your file type, you will not be able to
