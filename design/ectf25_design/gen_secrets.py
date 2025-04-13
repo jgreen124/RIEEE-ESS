@@ -39,12 +39,6 @@ def gen_secrets(channels: list[int]) -> bytes:
     # Create the secrets object
     # You can change this to generate any secret material
     # The secrets file will never be shared with attacker
-    string2 = 0
-    msg = 0
-    keyPair = RSA.generate(3072)
-    pubKey = keyPair.publickey()
-    pubKeyPEM =  pubKey.exportKey()
-    privKeyPEM = keyPair.exportKey()
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
