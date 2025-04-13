@@ -40,14 +40,13 @@ def gen_secrets(channels: list[int]) -> bytes:
     # The secrets file will never be shared with attacker
     string2 = 0
     msg = 0
-    keyPair = 0
+    keyPair = RSA.generate(3072)
     pubKey = keyPair.publickey()
     pubKeyPEM =  pubKey.exportKey()
     privKeyPEM = keyPair.exportKey()
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
-        keyPair : RSA.generate(3072),
         string2 : token_bytes("RIEESA", "utf-8"),
         msg : token_bytes(string2, encoding='utf-8'),
     }
