@@ -17,6 +17,8 @@ import ctypes
 import rfc3161ng
 import binascii
 from secrets import token_bytes
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
 
 
 class Encoder:
