@@ -18,6 +18,7 @@ from secrets import token_bytes
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 import binascii
+import base64
 
 
 def gen_secrets(channels: list[int]) -> bytes:
@@ -40,15 +41,15 @@ def gen_secrets(channels: list[int]) -> bytes:
     # The secrets file will never be shared with attacker
     string2 = 0
     msg = 0
-    keyPair = RSA.generate(3072)
-    pubKey = keyPair.publickey()
-    pubKeyPEM =  pubKey.exportKey()
-    privKeyPEM = keyPair.exportKey()
+    keyPair = RSA.generate(3072).hex()
+    pubKey = keyPair.publickey().hex()
+    pubKeyPEM =  pubKey.exportKey().hex()
+    privKeyPEM = keyPair.exportKey().hex()
     secrets = {
         "channels": channels,
         "some_secrets": "EXAMPLE",
-        string2 : token_bytes(16),
-        msg : token_bytes(16),
+        string2 : token_bytes(16).hex(),
+        msg : token_bytes(16).hex(),
     }
 
     # NOTE: if you choose to use JSON for your file type, you will not be able to
