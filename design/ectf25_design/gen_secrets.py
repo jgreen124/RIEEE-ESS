@@ -48,9 +48,6 @@ def gen_secrets(channels: list[int]) -> bytes:
         "channels": channels,
         "some_secrets": "EXAMPLE",
         keyPair : RSA.generate(3072),
-        pubKey : keyPair.publickey(),
-        pubKeyPEM : pubKey.exportKey(),
-        privKeyPEM : keyPair.exportKey(),
         string2 : token_bytes("RIEESA", "utf-8"),
         msg : token_bytes(string2, encoding='utf-8'),
     }
