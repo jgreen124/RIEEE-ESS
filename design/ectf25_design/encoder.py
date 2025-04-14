@@ -65,7 +65,6 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-        msg = 0
         data = frame
         header = b"Bambara"
         key = get_random_bytes(16 * 2)
@@ -73,13 +72,12 @@ class Encoder:
         cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
         cipher.update(header)
         ciphertext, tag = cipher.encrypt_and_digest(data)
-        msg = ciphertext
         keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
         pubKeyPEM =  pubKey.exportKey()
         privKeyPEM = keyPair.exportKey()
         encryptor = PKCS1_OAEP.new(pubKey)
-        encrypted = encryptor.encrypt(msg)
+        encrypted = encryptor.encrypt(key)
         key = encrypted
        
 
