@@ -64,7 +64,7 @@ class Encoder:
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
         msg = frame
-        keyPair = RSA.generate(3072)
+        keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
         pubKeyPEM =  pubKey.exportKey()
         privKeyPEM = keyPair.exportKey()
