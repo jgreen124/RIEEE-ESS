@@ -65,8 +65,7 @@ class Encoder:
         # lib.hash(bytes,len(bytes),cipher)
         msg = 0
         key = frame
-        cipher = AES.new(key, AES.MODE_EAX)
-        nonce = cipher.nonce
+        cipher = AES.new(key, AES.MODE_SIV)
         ciphertext, tag = cipher.encrypt_and_digest(data)
         msg = cipher
         keyPair = RSA.generate(1024)
