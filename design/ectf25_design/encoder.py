@@ -69,8 +69,8 @@ class Encoder:
         privKeyPEM = keyPair.exportKey()
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(msg)
-        with open("data_file.tsr", "wb") as f:
-            f.write(encoder.encode(tsr))
+        # with open("data_file.tsr", "wb") as f:
+            # f.write(encoder.encode(tsr))
        
 
         return struct.pack("<IQ", channel, timestamp) + frame
