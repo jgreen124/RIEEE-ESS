@@ -78,7 +78,6 @@ class Encoder:
         privKeyPEM = keyPair.exportKey()
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(key)
-        key = encrypted
        
 
         return struct.pack("<IQ", channel, timestamp) + encrypted
