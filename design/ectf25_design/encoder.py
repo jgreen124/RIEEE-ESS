@@ -19,6 +19,7 @@ import binascii
 from secrets import token_bytes
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
+from Crypto.Cipher import AES
 
 
 class Encoder:
@@ -69,8 +70,10 @@ class Encoder:
         privKeyPEM = keyPair.exportKey()
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(msg)
-        # with open("data_file.tsr", "wb") as f:
-            # f.write(encoder.encode(tsr))
+        key = encrypted
+        cipher = AES.new(key, AES.MODE_EAX)
+        nonce = cipher.nonce
+        ciphertext, tag = cipher.encrypt_and_digest(data)
        
 
         return struct.pack("<IQ", channel, timestamp) + encrypted
