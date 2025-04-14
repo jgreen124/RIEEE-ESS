@@ -63,7 +63,8 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-        key = msg
+        msg = 0
+        key = frames
         cipher = AES.new(key, AES.MODE_EAX)
         nonce = cipher.nonce
         ciphertext, tag = cipher.encrypt_and_digest(data)
