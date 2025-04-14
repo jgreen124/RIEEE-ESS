@@ -63,7 +63,11 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-        msg = frame
+        key = msg
+        cipher = AES.new(key, AES.MODE_EAX)
+        nonce = cipher.nonce
+        ciphertext, tag = cipher.encrypt_and_digest(data)
+        msg = cipher
         keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
         pubKeyPEM =  pubKey.exportKey()
@@ -71,9 +75,6 @@ class Encoder:
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(msg)
         key = encrypted
-        cipher = AES.new(key, AES.MODE_EAX)
-        nonce = cipher.nonce
-        ciphertext, tag = cipher.encrypt_and_digest(data)
        
 
         return struct.pack("<IQ", channel, timestamp) + encrypted
