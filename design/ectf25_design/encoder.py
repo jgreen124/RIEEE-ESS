@@ -73,7 +73,7 @@ class Encoder:
         cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
         cipher.update(header)
         ciphertext, tag = cipher.encrypt_and_digest(data)
-        msg = cipher
+        msg = ciphertext
         keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
         pubKeyPEM =  pubKey.exportKey()
