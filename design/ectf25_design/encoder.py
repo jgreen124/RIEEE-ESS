@@ -14,7 +14,7 @@ import argparse
 import struct
 import json
 import ctypes
-import rfc3161ng
+from base64 import b64encode
 import binascii
 from secrets import token_bytes
 from Crypto.PublicKey import RSA
@@ -67,17 +67,27 @@ class Encoder:
         # lib.hash(bytes,len(bytes),cipher)
         data = frame
         header = b"Bambara"
+
+        
         key = get_random_bytes(16 * 2)
         nonce = get_random_bytes(16)
         cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
         cipher.update(header)
         ciphertext, tag = cipher.encrypt_and_digest(data)
-        keyPair = RSA.generate(1024)
+
+        
+        keyPair = RSA.generate(2048)
         pubKey = keyPair.publickey()
         pubKeyPEM =  pubKey.exportKey()
         privKeyPEM = keyPair.exportKey()
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(key)
+
+        json_k = [ 'nonce', 'header', 'ciphertext', 'tag' ]
+
+        json_v = [ b64encode(x).decode('utf-8') for x in (nonce, header, ciphertext, tag) ]
+
+        result = json.dumps(dict(zip(json_k, json_v)))
        
 
         return struct.pack("<IQ", channel, timestamp) + encrypted
