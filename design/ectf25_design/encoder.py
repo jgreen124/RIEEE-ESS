@@ -20,6 +20,8 @@ from secrets import token_bytes
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
+
 
 
 class Encoder:
@@ -64,9 +66,13 @@ class Encoder:
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
         msg = 0
-        key = frame
-        cipher = AES.new(key, AES.MODE_SIV)
-        ciphertext, tag = cipher.encrypt_and_digest(frame)
+        data = frame
+        header = b"Bambara"
+        key = get_random_bytes(16)
+        nonce = get_random_bytes(16)
+        cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
+        cipher.update(header)
+        ciphertext, tag = cipher.encrypt_and_digest(data)
         msg = cipher
         keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
