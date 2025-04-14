@@ -73,6 +73,6 @@ class Encoder:
             # f.write(encoder.encode(tsr))
        
 
-        return struct.pack("<IQ", channel, timestamp) + frame
+        return struct.pack("<IQ", channel, timestamp) + encrypted
 
 
