@@ -66,7 +66,7 @@ class Encoder:
         msg = 0
         key = frame
         cipher = AES.new(key, AES.MODE_SIV)
-        ciphertext, tag = cipher.encrypt_and_digest(data)
+        ciphertext, tag = cipher.encrypt_and_digest(frame)
         msg = cipher
         keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
