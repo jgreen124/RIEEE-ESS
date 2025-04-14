@@ -64,7 +64,7 @@ class Encoder:
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
         msg = 0
-        key = frames
+        key = frame
         cipher = AES.new(key, AES.MODE_EAX)
         nonce = cipher.nonce
         ciphertext, tag = cipher.encrypt_and_digest(data)
