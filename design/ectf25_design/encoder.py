@@ -83,14 +83,18 @@ class Encoder:
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(key)
 
-        json_k = [ 'nonce', 'header', 'ciphertext', 'tag' ]
+        
+        json_payload = {
+            "nonce": b64encode(nonce).decode(),
+            "header": b64encode(header).decode(),
+            "ciphertext": b64encode(ciphertext).decode(),
+            "tag": b64encode(tag).decode()
+        }
+        json_bytes = json.dumps(json_payload).encode()
 
-        json_v = [ b64encode(x).decode('utf-8') for x in (nonce, header, ciphertext, tag) ]
-
-        result = json.dumps(dict(zip(json_k, json_v)))
        
 
-        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + result.encode('utf-8')) + struct.pack("<I", len(json_bytes)) + json_bytes
+        payload = (struct.pack("<IQ", channel, timestamp) + encrypted  + struct.pack("<I", len(json_bytes)) + json_bytes
 
         return payload
 
