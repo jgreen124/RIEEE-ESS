@@ -94,8 +94,8 @@ class Encoder:
 
        
 
-        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + struct.pack("<I", len(json_bytes)) + json_bytes)
+        payload = (struct.pack("<IQ", channel, timestamp) + struct.pack("<H", len(encrypted_key)) + encrypted + struct.pack("<I", len(json_bytes)) + json_bytes)
 
-        return payload
+        return payload, privKeyPEM 
 
 
