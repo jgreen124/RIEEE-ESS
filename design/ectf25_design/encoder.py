@@ -84,17 +84,17 @@ class Encoder:
         encrypted = encryptor.encrypt(key)
 
         
-        # json_payload = {
-            # "nonce": b64encode(nonce).decode(),
-            # "header": b64encode(header).decode(),
-            # "ciphertext": b64encode(ciphertext).decode(),
-            # "tag": b64encode(tag).decode()
-        # }
-        # json_bytes = json.dumps(json_payload).encode()
+        json_payload = {
+            "nonce": b64encode(nonce).decode(),
+            "header": b64encode(header).decode(),
+            "ciphertext": b64encode(ciphertext).decode(),
+            "tag": b64encode(tag).decode()
+        }
+        json_bytes = json.dumps(json_payload).encode()
 
        
 
-        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + ciphertext)
+        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + struct.pack("<I", len(json_bytes)) + json_bytes)
 
         return payload
 
