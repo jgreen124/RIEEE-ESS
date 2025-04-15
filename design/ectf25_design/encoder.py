@@ -65,7 +65,7 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-        data = frame
+    
         header = b"Bambara"
 
         
@@ -73,7 +73,7 @@ class Encoder:
         nonce = get_random_bytes(16)
         cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
         cipher.update(header)
-        ciphertext, tag = cipher.encrypt_and_digest(data)
+        ciphertext, tag = cipher.encrypt_and_digest(frame)
 
         
         keyPair = RSA.generate(1024)
