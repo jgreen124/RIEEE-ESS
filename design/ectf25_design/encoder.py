@@ -84,6 +84,9 @@ class Encoder:
         encryptor = PKCS1_OAEP.new(pubKey)
         encrypted = encryptor.encrypt(key)
 
+        assert len(tag) == 16, f"Tag is {len(tag)} bytes, expected 16"
+
+
         
         json_payload = {
             "nonce": b64encode(nonce).decode(),
@@ -95,6 +98,6 @@ class Encoder:
 
        
 
-        payload = (struct.pack("<IQ", channel, timestamp) + struct.pack("<H", len(encrypted)) + encrypted + struct.pack("<I", len(ciphertext)) + ciphertext + tag + nonce)
-        return payload, privKeyPEM 
+        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + ciphertext + tag + nonce)
+        return payload
 
