@@ -74,6 +74,7 @@ class Encoder:
         cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
         cipher.update(header)
         ciphertext, tag = cipher.encrypt_and_digest(frame)
+        print("Tag length:", len(tag))
 
         
         keyPair = RSA.generate(1024)
@@ -94,6 +95,6 @@ class Encoder:
 
        
 
-        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + ciphertext)
-        return payload
+        payload = (struct.pack("<IQ", channel, timestamp) + struct.pack("<H", len(encrypted)) + encrypted + struct.pack("<I", len(ciphertext)) + ciphertext + tag + nonce)
+        return payload, privKeyPEM 
 
