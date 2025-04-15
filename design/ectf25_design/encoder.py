@@ -90,6 +90,8 @@ class Encoder:
         result = json.dumps(dict(zip(json_k, json_v)))
        
 
-        return struct.pack("<IQ", channel, timestamp) + encrypted + result.encode('utf-8')
+        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + result.encode('utf-8')) struct.pack("<I", len(json_bytes)) + json_bytes
+
+        return payload
 
 
