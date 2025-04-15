@@ -76,7 +76,7 @@ class Encoder:
         ciphertext, tag = cipher.encrypt_and_digest(data)
 
         
-        keyPair = RSA.generate(2048)
+        keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
         pubKeyPEM =  pubKey.exportKey()
         privKeyPEM = keyPair.exportKey()
