@@ -76,6 +76,17 @@ class Encoder:
         ciphertext, tag = cipher.encrypt_and_digest(frame)
         print("Tag length:", len(tag))
 
+        with open("public.pem", "rb") as f:
+            pub_key = RSA.import_key(f.read())
+
+        private_key_pem = key_pair.export_key()
+        public_key_pem = key_pair.publickey().export_key()
+
+        with open("private.pem", "wb") as f:
+            f.write(private_key_pem)
+
+        with open("public.pem", "wb") as f:
+            f.write(public_key_pem)
         
         keyPair = RSA.generate(1024)
         pubKey = keyPair.publickey()
