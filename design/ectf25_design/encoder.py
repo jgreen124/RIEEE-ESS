@@ -69,7 +69,7 @@ class Encoder:
         header = b"Bambara"
 
         
-        key = get_random_bytes(16 * 2)
+        key = b'0123456789abcdef0123456789abcdef'
         nonce = get_random_bytes(16)
         cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
         cipher.update(header)
