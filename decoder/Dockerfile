@@ -40,9 +40,11 @@ ENTRYPOINT ["bash", "-c", "make release DECODER_ID=${DECODER_ID} && cp build/max
 
 WORKDIR /design
 
-COPY design ./design
+COPY ../design/ ./design/
 
 RUN pip install ./design
+
+RUN docker build -t decoder -f decoder/Dockerfile .
 
 RUN pip install --no-cache-dir pycryptodome
 
