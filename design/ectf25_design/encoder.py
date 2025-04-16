@@ -65,7 +65,8 @@ class Encoder:
         # lib = ctypes.CDLL('./cryptolib.so')
         # lib.encrypt_sym(bytes,len(bytes),key,cipher)
         # lib.hash(bytes,len(bytes),cipher)
-    
+        
+        assert len(frame) <= 64, "Frame must be at most 64 bytes"
         header = b"Bambara"
 
         
@@ -82,6 +83,5 @@ class Encoder:
 
        
 
-        payload = (struct.pack("<IQ", channel, timestamp) + ciphertext + tag)
-        return payload
+        return struct.pack("<IQ", channel, timestamp) + tag + ciphertext 
 
