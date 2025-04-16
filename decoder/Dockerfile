@@ -2,7 +2,7 @@
 # Make any changes here to set up your build environment (e.g., installing crypto
 # libraries, dependencies, the compiler for a different language)
 
-FROM python.3.12-slim
+FROM python:3.12-slim
 
 
 LABEL version="0.2"
@@ -40,7 +40,9 @@ ENTRYPOINT ["bash", "-c", "make release DECODER_ID=${DECODER_ID} && cp build/max
 
 WORKDIR /design
 
-COPY . .
+COPY design/ ./design/
+
+RUN pip install ./design
 
 RUN pip install --no-cache-dir pycryptodome
 
