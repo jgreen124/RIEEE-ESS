@@ -4,7 +4,6 @@
 
 FROM python:3.12-slim
 
-
 LABEL version="0.2"
 LABEL description="Example Decoder Docker Container for the 2025 eCTF"
 
@@ -40,16 +39,8 @@ ENTRYPOINT ["bash", "-c", "make release DECODER_ID=${DECODER_ID} && cp build/max
 
 WORKDIR /design
 
-COPY ../design/ ./design/
-
-RUN pip install ./design
-
-RUN docker build -t decoder -f decoder/Dockerfile .
+COPY . .
 
 RUN pip install --no-cache-dir pycryptodome
 
 CMD ["python", "main.py"]
-
-
-# Sample run command:
-# docker run --rm -v ./build_out:/out -v ./:/decoder -v ./secrets:/secrets -e DECODER_ID=0xdeadbeef decoder
