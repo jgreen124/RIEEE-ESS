@@ -2,7 +2,8 @@
 # Make any changes here to set up your build environment (e.g., installing crypto
 # libraries, dependencies, the compiler for a different language)
 
-FROM python:3.12-slim
+FROM ubuntu:24.04
+
 
 LABEL version="0.2"
 LABEL description="Example Decoder Docker Container for the 2025 eCTF"
