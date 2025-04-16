@@ -71,7 +71,6 @@ class Encoder:
 
         
         key = get_random_bytes(32)
-        nonce = get_random_bytes(16)
         cipher = AES.new(key, AES.MODE_SIV)
         cipher.update(header)
         ciphertext, tag = cipher.encrypt_and_digest(frame)
@@ -82,6 +81,6 @@ class Encoder:
         
 
        
-        payload = (struct.pack("<H", channel) + struct.pack("<Q", timestamp) + ciphertext + tag + nonce)
+        payload = (struct.pack("<H", channel) + struct.pack("<Q", timestamp) + ciphertext + tag)
         return payload 
 
