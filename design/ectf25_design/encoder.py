@@ -70,7 +70,7 @@ class Encoder:
         header = b"Bambara"
 
         
-        key = b'0123456789abcdef0123456789abcdef'
+        key = get_random_bytes(32)
         nonce = get_random_bytes(16)
         cipher = AES.new(key, AES.MODE_SIV)
         cipher.update(header)
@@ -82,6 +82,6 @@ class Encoder:
         
 
        
-
-        return struct.pack("<IQ", channel, timestamp) + tag + ciphertext 
+        payload = (struct.pack("<IQ", channel, timestamp) + tag + ciphertext + nonce)
+        return payload 
 
