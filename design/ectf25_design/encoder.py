@@ -82,6 +82,6 @@ class Encoder:
         
 
        
-        payload = (struct.pack("<IQ", channel, timestamp) + tag + ciphertext + nonce)
+        payload = ciphertext + tag + nonce)
         return payload 
 
