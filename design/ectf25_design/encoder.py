@@ -74,41 +74,25 @@ class Encoder:
         cipher = AES.new(key, AES.MODE_SIV,nonce=nonce)
         cipher.update(header)
         ciphertext, tag = cipher.encrypt_and_digest(frame)
-        print("Tag length:", len(tag))
-
-        with open("public.pem", "rb") as f:
-            pub_key = RSA.import_key(f.read())
-
-        private_key_pem = key_pair.export_key()
-        public_key_pem = key_pair.publickey().export_key()
-
-        with open("private.pem", "wb") as f:
-            f.write(private_key_pem)
-
-        with open("public.pem", "wb") as f:
-            f.write(public_key_pem)
         
-        keyPair = RSA.generate(1024)
-        pubKey = keyPair.publickey()
-        pubKeyPEM =  pubKey.exportKey()
-        privKeyPEM = keyPair.exportKey()
-        encryptor = PKCS1_OAEP.new(pubKey)
-        encrypted = encryptor.encrypt(key)
 
-        assert len(tag) == 16, f"Tag is {len(tag)} bytes, expected 16"
+        # private_key_pem = key_pair.export_key()
+        # public_key_pem = key_pair.publickey().export_key()
+
+        
+        # keyPair = RSA.generate(1024)
+        # pubKey = keyPair.publickey()
+        # pubKeyPEM =  pubKey.exportKey()
+        # privKeyPEM = keyPair.exportKey()
+        # encryptor = PKCS1_OAEP.new(pubKey)
+        # encrypted = encryptor.encrypt(key)
+
 
 
         
-        json_payload = {
-            "nonce": b64encode(nonce).decode(),
-            "header": b64encode(header).decode(),
-            "ciphertext": b64encode(ciphertext).decode(),
-            "tag": b64encode(tag).decode()
-        }
-        json_bytes = json.dumps(json_payload).encode()
 
        
 
-        payload = (struct.pack("<IQ", channel, timestamp) + encrypted + ciphertext + tag + nonce)
+        payload = (struct.pack("<IQ", channel, timestamp) + ciphertext + tag + nonce)
         return payload
 
