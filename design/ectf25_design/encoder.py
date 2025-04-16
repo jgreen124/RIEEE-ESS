@@ -82,6 +82,6 @@ class Encoder:
         
 
        
-        payload = ciphertext + tag + nonce)
+        payload = (ciphertext + tag + nonce)
         return payload 
 
